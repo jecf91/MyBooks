@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');
 const authorRouter = require('./routes/authors');
@@ -22,6 +23,8 @@ app.use(expressLayouts);
 app.use(express.static('public'));
 //Set body parser with urlencoded because we are sending these values to the server through an URL
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false}));
+//Use method-override
+app.use(methodOverride('_method'));
 
 //import mongoose
 const mongoose = require('mongoose');
